@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>The Graveyard — Every Strategy We Tested, and Why It Died</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;600;800&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>:root { color-scheme: dark; }
+body { font-family: 'Space Grotesk', -apple-system, 'Segoe UI', sans-serif; max-width: 760px; margin: 0 auto; padding: 40px 24px 80px; color: #F5F5F0; background: #0A0A0B; line-height: 1.65; counter-reset: section; }
+/* Egyptian motif layer — The Null Result design system, refuse/Anubis series.
+   Faint fixed watermark so it stays present on a long page. Same opacity band
+   as the .canvas::after layer (nr.css), same bottom-right bleed. */
+body::after { content:""; position:fixed; inset:0; z-index:0; pointer-events:none;
+  background-repeat:no-repeat;
+  background-size:62% auto;
+  background-position:right -40px bottom -110px;
+  opacity:.085;
+  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1000 780' width='1000' height='780' role='img' aria-labelledby='t-refuse' fill='none' stroke-linecap='round' stroke-linejoin='round'%3E %3Ctitle id='t-refuse'%3EThe Null Result, Anubis series: Eye of Horus, pyramids and Anubis, drawn faint behind the content.%3C/title%3E %3Cpath d='M-20,700 L1020,700' stroke='%23F5F5F0' stroke-width='3' opacity='.22'/%3E %3Cg transform='translate(120,520) scale(0.6)' opacity='0.55'%3E %3Cg stroke='%237DF9FF'%3E %3Cpath d='M138,300 L324,300' stroke-width='4' opacity='.55'/%3E %3Cpath d='M138,300 L324,64 L510,300' stroke-width='6'/%3E %3Cpath d='M324,64 L390,300' stroke-width='5'/%3E %3Cpath d='M451,300 L668,24 L885,300' stroke-width='7.5'/%3E %3Cpath d='M668,24 L746,300' stroke-width='6'/%3E %3Cpath d='M846,300 L978,132 L1110,300' stroke-width='5.5'/%3E %3Cpath d='M978,132 L1026,300' stroke-width='4.5'/%3E %3C/g%3E %3C/g%3E %3Cg transform='translate(40,60) scale(0.78)' opacity='0.95'%3E %3Cg stroke='%237DF9FF'%3E %3Cpath d='M58,130 C150,30 348,10 470,58' stroke-width='10'/%3E %3Cpath d='M48,176 C150,72 340,58 470,118' stroke-width='8'/%3E %3Cpath d='M470,118 C502,110 528,104 548,100' stroke-width='6'/%3E %3Cpath d='M48,176 C140,236 330,224 470,118' stroke-width='8'/%3E %3Ccircle cx='215' cy='148' r='30' stroke-width='7'/%3E %3Cpath d='M290,203 C334,278 388,322 448,326 C502,330 524,300 514,272 C505,247 474,244 464,266' stroke-width='7'/%3E %3C/g%3E %3Cpath d='M162,210 L126,352' stroke='%23CCFF00' stroke-width='7' stroke-dasharray='14 12'/%3E %3C/g%3E %3Cg transform='translate(470,316) scale(0.62)' opacity='1.0'%3E %3Cg stroke='%237DF9FF'%3E %3Cpath d='M120,182 L106,52 L166,156' stroke-width='7'/%3E %3Cpath d='M174,164 L196,50 L220,176' stroke-width='7'/%3E %3Cpath d='M100,282 C92,220 112,178 150,170 L206,176 C242,182 258,200 272,224 L330,292 L294,314 L262,302 C232,292 208,290 188,296 L148,330 C118,326 100,314 100,282 Z' stroke-width='8'/%3E %3Ccircle cx='232' cy='222' r='8' stroke-width='6'/%3E %3Cpath d='M520,600 L672,600' stroke-width='7'/%3E %3Cpath d='M548,600 L548,572 L644,572 L644,600' stroke-width='6'/%3E %3Cpath d='M596,572 L596,196' stroke-width='8'/%3E %3Ccircle cx='596' cy='186' r='12' stroke-width='6'/%3E %3Cpath d='M436,228 L756,164' stroke-width='8'/%3E %3Cpath d='M436,228 L398,296' stroke-width='5'/%3E %3Cpath d='M436,228 L476,296' stroke-width='5'/%3E %3Cpath d='M390,296 C412,338 464,338 484,296' stroke-width='7'/%3E %3Cpath d='M756,164 L720,232' stroke-width='5'/%3E %3Cpath d='M756,164 L794,232' stroke-width='5'/%3E %3Cpath d='M712,232 C734,274 786,274 806,232' stroke-width='7'/%3E %3C/g%3E %3Cpath d='M424,256 C412,268 412,286 430,292 L450,292 C468,286 468,268 456,256 C450,248 430,248 424,256 Z' stroke='%23FF4D4D' stroke-width='6'/%3E %3Cg stroke='%23CCFF00'%3E %3Cpath d='M758,228 L758,116' stroke-width='6'/%3E %3Cpath d='M758,116 C732,140 730,182 750,224' stroke-width='6'/%3E %3Cpath d='M758,116 C784,140 786,182 766,224' stroke-width='6'/%3E %3C/g%3E %3C/g%3E %3C/svg%3E");
+}
+h1, h2, h3, p, li, table, .watermark { position:relative; z-index:1; }
+h1 { font-size: 2rem; line-height: 1.2; color: #F5F5F0; border-bottom: 1px solid #262627; padding-bottom: 12px; letter-spacing: -0.02em; }
+h2 { margin-top: 2.2em; color: #F5F5F0; letter-spacing: -0.01em; }
+h2::before { counter-increment: section; content: counter(section, decimal-leading-zero) " · "; font-family: 'JetBrains Mono', monospace; font-weight: 800; color: #7DF9FF; }
+h3 { color: #8A8A8A; }
+hr { border: none; border-top: 1px solid #262627; margin: 2em 0; }
+p, li { color: #F5F5F0; margin: 0.9em 0; }
+code { font-family: 'JetBrains Mono', monospace; background: #1A1A1C; padding: 1px 6px; border-radius: 4px; }
+/* Data / figures: mono + cyan */
+strong { color: #F5F5F0; }
+p strong, li strong { color: #F5F5F0; font-weight: 700; }
+table { border-collapse: collapse; width: 100%; margin: 1em 0; font-family: 'JetBrains Mono', monospace; font-size: 0.86rem; }
+th, td { border: 1px solid #262627; padding: 7px 10px; text-align: left; }
+th { background: #1A1A1C; color: #7DF9FF; font-weight: 800; }
+tr:nth-child(even) td { background: #1A1A1C; }
+td { color: #F5F5F0; }
+/* Volt accent for the key headline word — handled inline */
+.volt { color: #CCFF00; }
+.cyan { color: #7DF9FF; }
+.red { color: #FF4D4D; }
+/* Verdict stamp */
+.verdict-stamp { font-family: 'JetBrains Mono', monospace; font-weight: 800; color: #FF4D4D; text-transform: uppercase; letter-spacing: 0.08em; }
+.muted { color: #8A8A8A; }
+/* Watermark */
+.watermark { display: flex; align-items: center; gap: 8px; font-family: 'JetBrains Mono', monospace; font-size: 0.72rem; color: #8A8A8A; }
+.watermark-mark { width: 10px; height: 10px; background: #CCFF00; }
+</style></head><body>
+<h1>THE <span class="volt">GRAVEYARD</span> — Every Strategy We Tested, and Why It Died</h1>
+<p><strong>A free report by Aym Abdalla.</strong> The trading null result, opened up.</p>
+<p>You asked for the evidence behind &quot;we tested 55 trading strategies and they all lose after costs.&quot; Here it is: the kill list, the cost floor, the traps we found, and the rules we now force every new idea through. No filters, no screenshots of winners. The corpses, filed.</p>
+<hr>
+<h2>The one number that explains everything</h2>
+<p><strong>Round-trip cost on a $100 position = <span class="cyan">$0.30</span></strong> (0.10% taker fee each way + 0.05% slippage each way).</p>
+<p>Every strategy we tested landed between <strong>-$0.25 and -$0.35 PnL per trade.</strong></p>
+<p>That is not a spread of outcomes. It means gross edge is indistinguishable from zero across the entire library. These strategies are not bad at predicting direction. They are not predicting anything. Net result equals negative transaction cost — exactly what a coin flip pays.</p>
+<p>Any new hypothesis must clear the cost hurdle in GROSS terms before it is worth anything. It does not move with account size (verified: identical results at $100 and $100,000, because percentage fees scale with position).</p>
+<h2>The scope</h2>
+<ul>
+<li><strong>55 strategies</strong> entered the graveyard (the 35-strategy v0 library, Lab v1 custom hypotheses, benchmarks, and post-purge additions).</li>
+<li><strong>535,425 graveyard entries</strong> — the complete verdict log, not a sample.</li>
+<li><strong>1,900,086 pooled backtest trades</strong> across 52 strategies with enough volume to judge.</li>
+<li><strong>2,567,999 live shadow signals</strong> across 26 shadow runs — paper only, never a real dollar, held to resolution and logged.</li>
+<li><strong>155 distinct findings</strong> — not raw pass counts. One strategy that works on one ticker across 9 exit configs produces 9 rows and ONE finding.</li>
+</ul>
+<h2>The verdict, stated honestly</h2>
+<p>The correct statistical verdict is <strong><span class="verdict-stamp">"no LARGE edge"</span></strong>, not &quot;no edge.&quot; To distinguish +$0.09/trade from zero needs roughly 4,000–8,700 trades; several rare patterns had far fewer and could not be judged per-ticker. We state the uncertainty, not a false certainty.</p>
+<p>But the pooled library — where the sample sizes are huge — is decisive: <strong>implied gross edge across 1.9M pooled trades is +$0.0011 per trade.</strong> Eleven hundredths of a cent. At any positive cost they lose, and at zero cost they make nothing.</p>
+<h2>The cost floor, in one table</h2>
+<table>
+<tr><th>Cost model</th><th>Net PnL/trade</th></tr>
+<tr><td>modeled 0.10% taker + 0.05% slip = $0.30</td><td>-0.299</td></tr>
+<tr><td>claimed 0.02% taker + 0.05% slip = $0.14</td><td>-0.139</td></tr>
+<tr><td>maker 0% + no slippage = $0.00</td><td>+0.001</td></tr>
+</table>
+<p>Even at the most generous real-world cost assumptions, nothing in the library clears the bar. <strong>Cost reduction is not a footnote — it is the structural variable of the entire search space.</strong></p>
+<h2>The kill list (selected rows, pooled across 180 tickers × 4 timeframes)</h2>
+<table>
+<tr><th>Strategy</th><th>Pooled trades</th><th>Win rate</th><th>PnL/trade</th></tr>
+<tr><td>grid_1.0atr</td><td>259,362</td><td>19.7%</td><td>-0.297</td></tr>
+<tr><td>fair_value_gap</td><td>165,110</td><td>13.9%</td><td>-0.297</td></tr>
+<tr><td>stoch_rsi_oversold</td><td>121,575</td><td>17.4%</td><td>-0.290</td></tr>
+<tr><td>grid_2.0atr</td><td>113,490</td><td>24.8%</td><td>-0.271</td></tr>
+<tr><td>ema_pullback</td><td>74,528</td><td>13.9%</td><td>-0.297</td></tr>
+<tr><td>breakout_20</td><td>65,622</td><td>23.6%</td><td>-0.314</td></tr>
+<tr><td>momentum_continuation</td><td>65,589</td><td>23.6%</td><td>-0.314</td></tr>
+<tr><td>volume_surge</td><td>41,709</td><td>20.2%</td><td>-0.335</td></tr>
+<tr><td>macd_crossover</td><td>38,461</td><td>23.7%</td><td>-0.322</td></tr>
+<tr><td>bullish_marubozu</td><td>34,356</td><td>17.2%</td><td>-0.345</td></tr>
+<tr><td>hammer</td><td>6,839</td><td>18.3%</td><td>-0.300</td></tr>
+<tr><td>C5 (custom)</td><td>4,204</td><td>36.4%</td><td><strong>-0.709</strong></td></tr>
+<tr><td>dragonfly_doji</td><td>1,980</td><td>11.4%</td><td>-0.443</td></tr>
+<tr><td>morning_star</td><td>1,699</td><td>21.7%</td><td>-0.398</td></tr>
+<tr><td>upside_tasuki_gap</td><td>855</td><td>11.9%</td><td>-0.301</td></tr>
+<tr><td>mat_hold</td><td>396</td><td>34.1%</td><td>-0.016</td></tr>
+<tr><td>bullish_abandoned_baby</td><td>333</td><td>11.4%</td><td>-0.452</td></tr>
+</table>
+<p>No row is positive. The best entries sit just under zero, and the worst (C5, -0.709/trade) is genuinely negative gross edge — worse than paying the cost.</p>
+<h2>The failure modes we found (the part that matters more)</h2>
+<p>These cost us more than the strategy results. Several silently invalidated earlier conclusions.</p>
+<ul>
+<li><strong>Rare patterns cannot be judged per-ticker.</strong> 13 of 35 strategies never reached 20 trades in 212,058 runs. They were recorded as FAIL when the truth was &quot;this test could not answer the question.&quot; Pooling across tickers fixed the judgment.</li>
+<li><strong>Strategies that could not fire.</strong> Two gap patterns had comparison operators swapped (mathematically unsatisfiable — verified against 200,000 random candle sets, never fired once). One had an empty loop range. A strategy that cannot fire looks identical to a strategy that fails.</li>
+<li><strong>Duplicates inflate apparent breadth.</strong> breakout_20 and momentum_continuation were 99.4% identical. One idea counted twice.</li>
+<li><strong>Aggregates hide concentration.</strong> &quot;12 strategies PASSED&quot; was really 2 distinct findings. A single 9-trade cell produced +2.53/trade. One asset (SOL) made the best cell look real.</li>
+<li><strong>Selecting winners buys exactly nothing.</strong> Filter to winning cells on half the instruments, judge on the other half, 20 random splits: survival was a coin flip (53–59%). Cells that WON averaged -$0.302/trade on unseen instruments against a -$0.30 floor.</li>
+<li><strong>Harness bugs that made confident, wrong numbers.</strong> A regime filter reading future data; unadjusted stock splits creating fake -90% crashes; caches keyed on <code>id()</code> returning stale arrays; Binance switching kline timestamps to microseconds mid-dataset. Every one produced confident, wrong numbers before it was caught.</li>
+</ul>
+<h2>What is RULED OUT (do not propose again without new evidence)</h2>
+<ul>
+<li>Generic candlestick patterns on liquid instruments with mechanical exits. Zero gross edge, ~218k tests.</li>
+<li>Bearish patterns as exit signals. -0.299/trade, no better than mechanical.</li>
+<li>Strategy inversion (&quot;the failed signal predicts the opposite&quot;). Tested on 48 candidates, zero beat buy-and-hold.</li>
+<li>Routing strategies by asset class. All uniformly at zero.</li>
+<li>Filtering the library to winners (see above).</li>
+<li>Bigger position size to outrun fees. Percentage fees scale with size.</li>
+</ul>
+<h2>The rules we now force every new idea through</h2>
+<ul>
+<li><strong>State a falsifiable thesis.</strong> &quot;RSI is oversold&quot; is not a thesis. &quot;Forced sellers must liquidate regardless of price, and that pressure ends when the margin call clears&quot; is.</li>
+<li><strong>State a kill condition</strong> — what result would prove it wrong.</li>
+<li><strong>Estimate gross edge per trade in basis points.</strong> Under ~30bps round trip, it cannot survive costs, and it is dead before it is written.</li>
+<li><strong>Estimate frequency.</strong> Under ~4,000 expected trades, a small edge cannot be distinguished from zero.</li>
+<li><strong>Verify it FIRES on real data before interpreting results.</strong></li>
+<li><strong>No filtering to winners.</strong> Conditions must be predicted, not discovered.</li>
+<li><strong>Every entry needs a stop strictly below entry.</strong></li>
+</ul>
+<h2>Why this exists (the honest why)</h2>
+<p>A bot that says <span class="volt">"I don't know"</span> is the only bot worth trusting with money. We built the thing everyone else screenshots — and it told us NO. That is not a closing argument, it is a starting point. The graveyard is the most valuable artifact we own, because a null result only compounds if you keep the corpse.</p>
+<p><em>Shadow-only, paper-only, never a real dollar. No live trading. The full method: a 21-check validation harness with an oracle control, a lookahead detector, fee-application checks, and cross-engine agreement; 4,692 passing tests in the engine suite.</em></p>
+<p><strong>Subscribe to The Nest for the next report</strong> — what we try to break next, and the rules it has to clear first.</p>
+<div class="watermark" style="margin-top:4em;"><span class="watermark-mark"></span>THE NULL RESULT &middot; AYM ABDALLA</div>
+<p style="font-size:0.85rem;color:#8A8A8A;">Generated 2026-08-31 &middot; Shadow-only, paper-only. Numbers verified against the project's own data.</p>
+</body></html>
