@@ -11,11 +11,10 @@ body { font-family: 'Space Grotesk', -apple-system, 'Segoe UI', sans-serif; max-
    Faint fixed watermark so it stays present on a long page. Same opacity band
    as the .canvas::after layer (nr.css), same bottom-right bleed. */
 body::after { content:""; position:fixed; inset:0; z-index:0; pointer-events:none;
-  background-repeat:no-repeat;
-  background-size:62% auto;
-  background-position:right -40px bottom -110px;
-  opacity:.085;
-  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1000 780' width='1000' height='780' role='img' aria-labelledby='t-refuse' fill='none' stroke-linecap='round' stroke-linejoin='round'%3E %3Ctitle id='t-refuse'%3EThe Null Result, Anubis series: Eye of Horus, pyramids and Anubis, drawn faint behind the content.%3C/title%3E %3Cpath d='M-20,700 L1020,700' stroke='%23F5F5F0' stroke-width='3' opacity='.22'/%3E %3Cg transform='translate(120,520) scale(0.6)' opacity='0.55'%3E %3Cg stroke='%237DF9FF'%3E %3Cpath d='M138,300 L324,300' stroke-width='4' opacity='.55'/%3E %3Cpath d='M138,300 L324,64 L510,300' stroke-width='6'/%3E %3Cpath d='M324,64 L390,300' stroke-width='5'/%3E %3Cpath d='M451,300 L668,24 L885,300' stroke-width='7.5'/%3E %3Cpath d='M668,24 L746,300' stroke-width='6'/%3E %3Cpath d='M846,300 L978,132 L1110,300' stroke-width='5.5'/%3E %3Cpath d='M978,132 L1026,300' stroke-width='4.5'/%3E %3C/g%3E %3C/g%3E %3Cg transform='translate(40,60) scale(0.78)' opacity='0.95'%3E %3Cg stroke='%237DF9FF'%3E %3Cpath d='M58,130 C150,30 348,10 470,58' stroke-width='10'/%3E %3Cpath d='M48,176 C150,72 340,58 470,118' stroke-width='8'/%3E %3Cpath d='M470,118 C502,110 528,104 548,100' stroke-width='6'/%3E %3Cpath d='M48,176 C140,236 330,224 470,118' stroke-width='8'/%3E %3Ccircle cx='215' cy='148' r='30' stroke-width='7'/%3E %3Cpath d='M290,203 C334,278 388,322 448,326 C502,330 524,300 514,272 C505,247 474,244 464,266' stroke-width='7'/%3E %3C/g%3E %3Cpath d='M162,210 L126,352' stroke='%23CCFF00' stroke-width='7' stroke-dasharray='14 12'/%3E %3C/g%3E %3Cg transform='translate(470,316) scale(0.62)' opacity='1.0'%3E %3Cg stroke='%237DF9FF'%3E %3Cpath d='M120,182 L106,52 L166,156' stroke-width='7'/%3E %3Cpath d='M174,164 L196,50 L220,176' stroke-width='7'/%3E %3Cpath d='M100,282 C92,220 112,178 150,170 L206,176 C242,182 258,200 272,224 L330,292 L294,314 L262,302 C232,292 208,290 188,296 L148,330 C118,326 100,314 100,282 Z' stroke-width='8'/%3E %3Ccircle cx='232' cy='222' r='8' stroke-width='6'/%3E %3Cpath d='M520,600 L672,600' stroke-width='7'/%3E %3Cpath d='M548,600 L548,572 L644,572 L644,600' stroke-width='6'/%3E %3Cpath d='M596,572 L596,196' stroke-width='8'/%3E %3Ccircle cx='596' cy='186' r='12' stroke-width='6'/%3E %3Cpath d='M436,228 L756,164' stroke-width='8'/%3E %3Cpath d='M436,228 L398,296' stroke-width='5'/%3E %3Cpath d='M436,228 L476,296' stroke-width='5'/%3E %3Cpath d='M390,296 C412,338 464,338 484,296' stroke-width='7'/%3E %3Cpath d='M756,164 L720,232' stroke-width='5'/%3E %3Cpath d='M756,164 L794,232' stroke-width='5'/%3E %3Cpath d='M712,232 C734,274 786,274 806,232' stroke-width='7'/%3E %3C/g%3E %3Cpath d='M424,256 C412,268 412,286 430,292 L450,292 C468,286 468,268 456,256 C450,248 430,248 424,256 Z' stroke='%23FF4D4D' stroke-width='6'/%3E %3Cg stroke='%23CCFF00'%3E %3Cpath d='M758,228 L758,116' stroke-width='6'/%3E %3Cpath d='M758,116 C732,140 730,182 750,224' stroke-width='6'/%3E %3Cpath d='M758,116 C784,140 786,182 766,224' stroke-width='6'/%3E %3C/g%3E %3C/g%3E %3C/svg%3E");
+  background-size:cover;
+  background-position:center;
+  opacity:.05;
+  background-image:url("refuse-wide.png");
 }
 h1, h2, h3, p, li, table, .watermark { position:relative; z-index:1; }
 h1 { font-size: 2rem; line-height: 1.2; color: #F5F5F0; border-bottom: 1px solid #262627; padding-bottom: 12px; letter-spacing: -0.02em; }
@@ -40,10 +39,16 @@ td { color: #F5F5F0; }
 /* Verdict stamp */
 .verdict-stamp { font-family: 'JetBrains Mono', monospace; font-weight: 800; color: #FF4D4D; text-transform: uppercase; letter-spacing: 0.08em; }
 .muted { color: #8A8A8A; }
+/* Nest brand lockup */
+.nest-lockup { display:flex; align-items:center; gap:10px; font-family:'JetBrains Mono',monospace; font-size:.78rem; letter-spacing:3px; text-transform:uppercase; color:#8A8A8A; margin-bottom:2.2em; }
+.nest-mark { width:12px; height:12px; background:#CCFF00; flex-shrink:0; }
+.nest-lockup b { color:#CCFF00; font-weight:800; }
+.nest-sub { letter-spacing:2px; }
 /* Watermark */
 .watermark { display: flex; align-items: center; gap: 8px; font-family: 'JetBrains Mono', monospace; font-size: 0.72rem; color: #8A8A8A; }
 .watermark-mark { width: 10px; height: 10px; background: #CCFF00; }
 </style></head><body>
+<div class="nest-lockup"><span class="nest-mark"></span>THE <b>NEST</b><span class="nest-sub">&middot; The Null Result &middot; Aym Abdalla</span></div>
 <h1>THE <span class="volt">GRAVEYARD</span> — Every Strategy We Tested, and Why It Died</h1>
 <p><strong>A free report by Aym Abdalla.</strong> The trading null result, opened up.</p>
 <p>You asked for the evidence behind &quot;we tested 55 trading strategies and they all lose after costs.&quot; Here it is: the kill list, the cost floor, the traps we found, and the rules we now force every new idea through. No filters, no screenshots of winners. The corpses, filed.</p>
